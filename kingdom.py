@@ -1,5 +1,6 @@
 from exceptions import KingdomNotFound, InvalidAllyKingdom, InvalidMessageException
 from MessageVerify import MessageVerify
+from Message import Message
 
 class Kingdom:
     __kingdoms = {}
@@ -17,7 +18,10 @@ class Kingdom:
             raise KingdomNotFound
     
     def get_allies(self):
-        return self.__ally_kingdoms
+        allies = []
+        for kingdom in self.__ally_kingdoms:
+            allies.append(kingdom.name())
+        return allies
     
     def name(self):
         return self.__kingdom_name
@@ -44,11 +48,12 @@ class Kingdom:
     def total_allies(self):
         return len(self.__ally_kingdoms)
 
-    def send_message(self, otherKingdom, message):
+    def send_message(self, message):
+        otherKingdom = message.get_receiver()
         if otherKingdom == self:
             raise InvalidMessageException("Cannot send message to itself")
         
-        response = MessageVerify.verify(otherKingdom, message)
+        response = MessageVerify.verify(otherKingdom, message.get_message())
         
         if response:
             self.add_ally(otherKingdom)
