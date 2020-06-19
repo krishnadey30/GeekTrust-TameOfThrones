@@ -7,7 +7,7 @@ class Kingdom:
 
     __kingdoms = dict()    # static variable to hold the list of all the kingdoms of Southeros
     def __init__(self, name, emblem):
-        """Initializer method 
+        """
         Args:
             name (string): The first parameter. Name of the Kingdom
             emblem (string): The second parameter. Emblem of the Kingdom.

@@ -2,17 +2,26 @@ from Southeros import Southeros
 from Message import Message
 import sys
 
-"""Registers all the Kingdoms of Southeros"""
 def register_all_kingdoms():
+    """Registers all the Kingdoms of Southeros
+    Returns:
+        Southeros Object: Southeros Class Object
+    """
     kingdoms = [("SPACE","GORILLA"), ("LAND","PANDA"),("WATER","OCTOPUS"),
         ("ICE", "MAMMOTH"), ("AIR", "OWL"), ("FIRE", "DRAGON")]
     southeros = Southeros(kingdoms)
     return southeros
 
-"""Splits the given text to two parts using first space, first part being the kingdom name 
-and second part being the text message sent to the kingdom
-"""
+
 def get_kingdom_and_message(text):
+    """Splits the given text to two parts using first space, first part being the kingdom name 
+        and second part being the text message sent to the kingdom
+
+    Args:
+        text (string): string to be splitted
+    Returns:
+        tuple: first being the name and second being the message
+    """
     splitted_text = text.split()
     kingdom_name = splitted_text[0]
     ciphered_text = ""
@@ -20,8 +29,8 @@ def get_kingdom_and_message(text):
         ciphered_text += c
     return kingdom_name, ciphered_text
 
-"""main function of the Tame of Thrones""""
 def main():
+    """main function of the Tame of Thrones"""
     southeros = register_all_kingdoms()    # registers all the kindoms of Southeros
     space_kingdom = southeros.get_kingdom("SPACE")    # gets the space kingdom object
     input_file = sys.argv[1]    # file location
