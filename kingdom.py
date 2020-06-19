@@ -3,19 +3,23 @@ from MessageVerify import MessageVerify
 from Message import Message
 
 class Kingdom:
-    __kingdoms = {}
-    def init(self, name, emblem):
+    __kingdoms = dict()
+    def __init__(self, name, emblem):
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
         self.__ally_kingdoms = set()
-        __kingdoms[name] = self
+        Kingdom.add_kingdom(self)
     
-    @staticmethod
-    def get_kingdom(name):
-        if name in __kingdoms.keys():
-            return __kingdoms[name]
+    @classmethod
+    def get_kingdom(cls, name):
+        if name in cls.__kingdoms.keys():
+            return cls.__kingdoms[name]
         else:
             raise KingdomNotFound
+    
+    @classmethod
+    def add_kingdom(cls, kingdom):
+        cls.__kingdoms[kingdom.name()] = kingdom
     
     def get_allies(self):
         allies = []
@@ -29,7 +33,7 @@ class Kingdom:
     def emblem(self):
         return self.__kingdom_emblem
 
-    def emlem_length(self):
+    def emblem_length(self):
         return len(self.emblem())
     
     def add_ally(self, otherKingdom):
@@ -38,7 +42,7 @@ class Kingdom:
         elif otherKingdom == self:
             raise InvalidAllyKingdom("Cannot add itself as ally")
         else:
-            if not is_ally(self, otherKingdom):
+            if not self.is_ally(otherKingdom):
                 self.__ally_kingdoms.add(otherKingdom)
                 otherKingdom.add_ally(self)
 
@@ -63,14 +67,14 @@ class Kingdom:
     def is_ruler(self):
         return self.total_allies >= 3
 
-    @staticmethod
-    def get_all():
-        for kingdom_name in __kingdoms.key():
-            yield __kingdoms[kingdom_name]
+    @classmethod
+    def get_all(cls):
+        for kingdom_name in cls.__kingdoms.keys():
+            yield cls.__kingdoms[kingdom_name]
         
-    @staticmethod
-    def get_ruler():
-        for kingdom in get_all():
+    @classmethod
+    def get_ruler(cls):
+        for kingdom in cls.get_all():
             if kingdom.total_allies() >= 3:
                 return kingdom
         return None
