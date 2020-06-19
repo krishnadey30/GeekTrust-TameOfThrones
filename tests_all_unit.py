@@ -1,7 +1,7 @@
 import unittest
 from kingdom import Kingdom
 from Message import Message
-
+from MessageVerify import MessageVerify
 class TestKingdom(unittest.TestCase):
     def test_init(self):
         name = "ICE"
@@ -140,6 +140,18 @@ class TestMessage(unittest.TestCase):
         self.assertEqual(message.get_message(), message_text)
         Kingdom.remove_all_kingdoms()
 
+class TestMessageVerify(unittest.TestCase):
+    def test_verify(self):
+        name = "AIR"
+        emblem = "OWL"
+        air_kingdom = Kingdom(name, emblem)
+        message_text = "ROZO"
+        response = MessageVerify.verify(air_kingdom, message_text)
+        self.assertTrue(response)
+        message_text = "OWLAOWLBOWLC"
+        response = MessageVerify.verify(air_kingdom, message_text)
+        self.assertFalse(response)
+        Kingdom.remove_all_kingdoms()
 
 if __name__ == '__main__':
     unittest.main()
