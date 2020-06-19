@@ -23,6 +23,8 @@ class Kingdom:
         Args:
             name (string): name of the Kingdom
         
+        Returns:
+            Kingdom Object: Kingdom Object for the given name
         Raises:
             KingdomNotFound:
                 If no Kingdom is found for the kingdom name passed in as a parameter.
