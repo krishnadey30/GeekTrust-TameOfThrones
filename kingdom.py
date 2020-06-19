@@ -15,7 +15,7 @@ class Kingdom:
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
         self.__ally_kingdoms = set()
-        Kingdom.add_kingdom(self)
+        Kingdom.__add_kingdom(self)
     
     @classmethod
     def get_kingdom(cls, name):
@@ -35,7 +35,7 @@ class Kingdom:
             raise KingdomNotFound
     
     @classmethod
-    def add_kingdom(cls, kingdom):
+    def __add_kingdom(cls, kingdom):
         """Class Method to add Kingdom Object to the list of Kingdoms
         Args:
             kingdom (object): Kingdom Object to be added
@@ -133,7 +133,7 @@ class Kingdom:
         Returns:
             bool: True if the kingdom is a ruling Kingdom, False otherwise
         """
-        return self.total_allies >= 3
+        return self.total_allies() >= 3
 
     @classmethod
     def get_all(cls):
@@ -152,10 +152,16 @@ class Kingdom:
             `Kingdom Object`: Ruler Kingdom if it exists, None Otherwise
         """
         for kingdom in cls.get_all():
-            if kingdom.total_allies() >= 3:
+            if kingdom.is_ruler():
                 return kingdom
         return None
-
+    
+    @classmethod
+    def remove_all_kingdoms(cls):
+        """Removes all the Kingdoms"""
+        for kingdom in cls.get_all():
+            del kingdom
+        cls.__kingdoms.clear()
 
     
 
