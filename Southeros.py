@@ -1,8 +1,6 @@
 from kingdom import Kingdom
 class Southeros:
     """Class to contain the World of Southeros"""
-    def __init__(self):
-        self.__rulingKingdom = None
 
     def __init__(self, kingdoms):
         """
@@ -10,6 +8,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         """
         self.__rulingKingdom = None
+        self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
     def __register_kingdom(self, name, emblem):
@@ -22,6 +21,7 @@ class Southeros:
             Kingdom Object: Return the new kingdom object 
         """
         new_kingdom = Kingdom(name, emblem)
+        self.__kingdom_count += 1
         return new_kingdom
     
     def register_kingdoms(self, kingdoms):
@@ -62,3 +62,9 @@ class Southeros:
         """
         return Kingdom.get_ruler()
 
+    def get_total_kingdoms(self):
+        """Return the count of Total Kingdoms in Southeros
+        Returns:
+            int: Total count of Kingdoms
+        """
+        return self.__kingdom_count

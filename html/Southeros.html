@@ -27,8 +27,6 @@
 <pre><code class="python">from kingdom import Kingdom
 class Southeros:
     &#34;&#34;&#34;Class to contain the World of Southeros&#34;&#34;&#34;
-    def __init__(self):
-        self.__rulingKingdom = None
 
     def __init__(self, kingdoms):
         &#34;&#34;&#34;
@@ -36,6 +34,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         &#34;&#34;&#34;
         self.__rulingKingdom = None
+        self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
     def __register_kingdom(self, name, emblem):
@@ -48,6 +47,7 @@ class Southeros:
             Kingdom Object: Return the new kingdom object 
         &#34;&#34;&#34;
         new_kingdom = Kingdom(name, emblem)
+        self.__kingdom_count += 1
         return new_kingdom
     
     def register_kingdoms(self, kingdoms):
@@ -86,7 +86,14 @@ class Southeros:
         Returns:
             Kingdom Object: Ruling Kingdom Object otherwise None
         &#34;&#34;&#34;
-        return Kingdom.get_ruler()</code></pre>
+        return Kingdom.get_ruler()
+
+    def get_total_kingdoms(self):
+        &#34;&#34;&#34;Return the count of Total Kingdoms in Southeros
+        Returns:
+            int: Total count of Kingdoms
+        &#34;&#34;&#34;
+        return self.__kingdom_count</code></pre>
 </details>
 </section>
 <section>
@@ -115,8 +122,6 @@ class Southeros:
 </summary>
 <pre><code class="python">class Southeros:
     &#34;&#34;&#34;Class to contain the World of Southeros&#34;&#34;&#34;
-    def __init__(self):
-        self.__rulingKingdom = None
 
     def __init__(self, kingdoms):
         &#34;&#34;&#34;
@@ -124,6 +129,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         &#34;&#34;&#34;
         self.__rulingKingdom = None
+        self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
     def __register_kingdom(self, name, emblem):
@@ -136,6 +142,7 @@ class Southeros:
             Kingdom Object: Return the new kingdom object 
         &#34;&#34;&#34;
         new_kingdom = Kingdom(name, emblem)
+        self.__kingdom_count += 1
         return new_kingdom
     
     def register_kingdoms(self, kingdoms):
@@ -174,7 +181,14 @@ class Southeros:
         Returns:
             Kingdom Object: Ruling Kingdom Object otherwise None
         &#34;&#34;&#34;
-        return Kingdom.get_ruler()</code></pre>
+        return Kingdom.get_ruler()
+
+    def get_total_kingdoms(self):
+        &#34;&#34;&#34;Return the count of Total Kingdoms in Southeros
+        Returns:
+            int: Total count of Kingdoms
+        &#34;&#34;&#34;
+        return self.__kingdom_count</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -215,6 +229,28 @@ class Southeros:
             If no Kingdom is found for the kingdom name passed in as a parameter.
     &#34;&#34;&#34;
     return Kingdom.get_kingdom(name)</code></pre>
+</details>
+</dd>
+<dt id="Southeros.Southeros.get_total_kingdoms"><code class="name flex">
+<span>def <span class="ident">get_total_kingdoms</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the count of Total Kingdoms in Southeros</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>Total count of Kingdoms</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_total_kingdoms(self):
+    &#34;&#34;&#34;Return the count of Total Kingdoms in Southeros
+    Returns:
+        int: Total count of Kingdoms
+    &#34;&#34;&#34;
+    return self.__kingdom_count</code></pre>
 </details>
 </dd>
 <dt id="Southeros.Southeros.register_kingdoms"><code class="name flex">
@@ -281,6 +317,7 @@ class Southeros:
 <h4><code><a title="Southeros.Southeros" href="#Southeros.Southeros">Southeros</a></code></h4>
 <ul class="">
 <li><code><a title="Southeros.Southeros.get_kingdom" href="#Southeros.Southeros.get_kingdom">get_kingdom</a></code></li>
+<li><code><a title="Southeros.Southeros.get_total_kingdoms" href="#Southeros.Southeros.get_total_kingdoms">get_total_kingdoms</a></code></li>
 <li><code><a title="Southeros.Southeros.register_kingdoms" href="#Southeros.Southeros.register_kingdoms">register_kingdoms</a></code></li>
 <li><code><a title="Southeros.Southeros.ruler" href="#Southeros.Southeros.ruler">ruler</a></code></li>
 </ul>
