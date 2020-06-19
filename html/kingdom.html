@@ -41,7 +41,7 @@ class Kingdom:
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
         self.__ally_kingdoms = set()
-        Kingdom.add_kingdom(self)
+        Kingdom.__add_kingdom(self)
     
     @classmethod
     def get_kingdom(cls, name):
@@ -61,7 +61,7 @@ class Kingdom:
             raise KingdomNotFound
     
     @classmethod
-    def add_kingdom(cls, kingdom):
+    def __add_kingdom(cls, kingdom):
         &#34;&#34;&#34;Class Method to add Kingdom Object to the list of Kingdoms
         Args:
             kingdom (object): Kingdom Object to be added
@@ -159,7 +159,7 @@ class Kingdom:
         Returns:
             bool: True if the kingdom is a ruling Kingdom, False otherwise
         &#34;&#34;&#34;
-        return self.total_allies &gt;= 3
+        return self.total_allies() &gt;= 3
 
     @classmethod
     def get_all(cls):
@@ -178,10 +178,16 @@ class Kingdom:
             `Kingdom Object`: Ruler Kingdom if it exists, None Otherwise
         &#34;&#34;&#34;
         for kingdom in cls.get_all():
-            if kingdom.total_allies() &gt;= 3:
+            if kingdom.is_ruler():
                 return kingdom
         return None
-
+    
+    @classmethod
+    def remove_all_kingdoms(cls):
+        &#34;&#34;&#34;Removes all the Kingdoms&#34;&#34;&#34;
+        for kingdom in cls.get_all():
+            del kingdom
+        cls.__kingdoms.clear()
 
     </code></pre>
 </details>
@@ -225,7 +231,7 @@ class Kingdom:
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
         self.__ally_kingdoms = set()
-        Kingdom.add_kingdom(self)
+        Kingdom.__add_kingdom(self)
     
     @classmethod
     def get_kingdom(cls, name):
@@ -245,7 +251,7 @@ class Kingdom:
             raise KingdomNotFound
     
     @classmethod
-    def add_kingdom(cls, kingdom):
+    def __add_kingdom(cls, kingdom):
         &#34;&#34;&#34;Class Method to add Kingdom Object to the list of Kingdoms
         Args:
             kingdom (object): Kingdom Object to be added
@@ -343,7 +349,7 @@ class Kingdom:
         Returns:
             bool: True if the kingdom is a ruling Kingdom, False otherwise
         &#34;&#34;&#34;
-        return self.total_allies &gt;= 3
+        return self.total_allies() &gt;= 3
 
     @classmethod
     def get_all(cls):
@@ -362,35 +368,19 @@ class Kingdom:
             `Kingdom Object`: Ruler Kingdom if it exists, None Otherwise
         &#34;&#34;&#34;
         for kingdom in cls.get_all():
-            if kingdom.total_allies() &gt;= 3:
+            if kingdom.is_ruler():
                 return kingdom
-        return None</code></pre>
+        return None
+    
+    @classmethod
+    def remove_all_kingdoms(cls):
+        &#34;&#34;&#34;Removes all the Kingdoms&#34;&#34;&#34;
+        for kingdom in cls.get_all():
+            del kingdom
+        cls.__kingdoms.clear()</code></pre>
 </details>
 <h3>Static methods</h3>
 <dl>
-<dt id="kingdom.Kingdom.add_kingdom"><code class="name flex">
-<span>def <span class="ident">add_kingdom</span></span>(<span>kingdom)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Class Method to add Kingdom Object to the list of Kingdoms</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>kingdom</code></strong> :&ensp;<code>object</code></dt>
-<dd>Kingdom Object to be added</dd>
-</dl></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@classmethod
-def add_kingdom(cls, kingdom):
-    &#34;&#34;&#34;Class Method to add Kingdom Object to the list of Kingdoms
-    Args:
-        kingdom (object): Kingdom Object to be added
-    &#34;&#34;&#34;
-    cls.__kingdoms[kingdom.name()] = kingdom</code></pre>
-</details>
-</dd>
 <dt id="kingdom.Kingdom.get_all"><code class="name flex">
 <span>def <span class="ident">get_all</span></span>(<span>)</span>
 </code></dt>
@@ -473,9 +463,26 @@ def get_ruler(cls):
         `Kingdom Object`: Ruler Kingdom if it exists, None Otherwise
     &#34;&#34;&#34;
     for kingdom in cls.get_all():
-        if kingdom.total_allies() &gt;= 3:
+        if kingdom.is_ruler():
             return kingdom
     return None</code></pre>
+</details>
+</dd>
+<dt id="kingdom.Kingdom.remove_all_kingdoms"><code class="name flex">
+<span>def <span class="ident">remove_all_kingdoms</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Removes all the Kingdoms</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def remove_all_kingdoms(cls):
+    &#34;&#34;&#34;Removes all the Kingdoms&#34;&#34;&#34;
+    for kingdom in cls.get_all():
+        del kingdom
+    cls.__kingdoms.clear()</code></pre>
 </details>
 </dd>
 </dl>
@@ -636,7 +643,7 @@ def get_ruler(cls):
     Returns:
         bool: True if the kingdom is a ruling Kingdom, False otherwise
     &#34;&#34;&#34;
-    return self.total_allies &gt;= 3</code></pre>
+    return self.total_allies() &gt;= 3</code></pre>
 </details>
 </dd>
 <dt id="kingdom.Kingdom.name"><code class="name flex">
@@ -742,7 +749,6 @@ Adds the both sender and reciever Kingdoms as Allies </p>
 <h4><code><a title="kingdom.Kingdom" href="#kingdom.Kingdom">Kingdom</a></code></h4>
 <ul class="two-column">
 <li><code><a title="kingdom.Kingdom.add_ally" href="#kingdom.Kingdom.add_ally">add_ally</a></code></li>
-<li><code><a title="kingdom.Kingdom.add_kingdom" href="#kingdom.Kingdom.add_kingdom">add_kingdom</a></code></li>
 <li><code><a title="kingdom.Kingdom.emblem" href="#kingdom.Kingdom.emblem">emblem</a></code></li>
 <li><code><a title="kingdom.Kingdom.emblem_length" href="#kingdom.Kingdom.emblem_length">emblem_length</a></code></li>
 <li><code><a title="kingdom.Kingdom.get_all" href="#kingdom.Kingdom.get_all">get_all</a></code></li>
@@ -752,6 +758,7 @@ Adds the both sender and reciever Kingdoms as Allies </p>
 <li><code><a title="kingdom.Kingdom.is_ally" href="#kingdom.Kingdom.is_ally">is_ally</a></code></li>
 <li><code><a title="kingdom.Kingdom.is_ruler" href="#kingdom.Kingdom.is_ruler">is_ruler</a></code></li>
 <li><code><a title="kingdom.Kingdom.name" href="#kingdom.Kingdom.name">name</a></code></li>
+<li><code><a title="kingdom.Kingdom.remove_all_kingdoms" href="#kingdom.Kingdom.remove_all_kingdoms">remove_all_kingdoms</a></code></li>
 <li><code><a title="kingdom.Kingdom.send_message" href="#kingdom.Kingdom.send_message">send_message</a></code></li>
 <li><code><a title="kingdom.Kingdom.total_allies" href="#kingdom.Kingdom.total_allies">total_allies</a></code></li>
 </ul>
