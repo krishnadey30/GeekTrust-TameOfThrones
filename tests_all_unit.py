@@ -1,6 +1,7 @@
 import unittest
 from kingdom import Kingdom
 from Message import Message
+
 class TestKingdom(unittest.TestCase):
     def test_init(self):
         name = "ICE"
@@ -105,6 +106,40 @@ class TestKingdom(unittest.TestCase):
         self.assertEqual(ice_kingdom, Kingdom.get_ruler())
         self.assertNotEqual(fire_kingdom, Kingdom.get_ruler())
         Kingdom.remove_all_kingdoms()
+
+class TestMessage(unittest.TestCase):
+    def test_get_sender(self):
+        name = ["ICE", "AIR"]
+        emblem = ["MAMMOTH", "OWL"]
+        ice_kingdom = Kingdom(name[0], emblem[0])
+        air_kingdom = Kingdom(name[1], emblem[1])
+        message_text = "ROZO"
+        message = Message(air_kingdom, ice_kingdom, message_text)
+        self.assertEqual(message.get_sender(), air_kingdom)
+        self.assertNotEqual(message.get_sender(), ice_kingdom)
+        Kingdom.remove_all_kingdoms()
+    
+    def test_get_receiver(self):
+        name = ["ICE", "AIR"]
+        emblem = ["MAMMOTH", "OWL"]
+        ice_kingdom = Kingdom(name[0], emblem[0])
+        air_kingdom = Kingdom(name[1], emblem[1])
+        message_text = "ROZO"
+        message = Message(air_kingdom, ice_kingdom, message_text)
+        self.assertEqual(message.get_receiver(), ice_kingdom)
+        self.assertNotEqual(message.get_receiver(), air_kingdom)
+        Kingdom.remove_all_kingdoms()
+    
+    def test_get_message(self):
+        name = ["ICE", "AIR"]
+        emblem = ["MAMMOTH", "OWL"]
+        ice_kingdom = Kingdom(name[0], emblem[0])
+        air_kingdom = Kingdom(name[1], emblem[1])
+        message_text = "ROZO"
+        message = Message(air_kingdom, ice_kingdom, message_text)
+        self.assertEqual(message.get_message(), message_text)
+        Kingdom.remove_all_kingdoms()
+
 
 if __name__ == '__main__':
     unittest.main()
