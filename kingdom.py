@@ -14,7 +14,7 @@ class Kingdom:
         """
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
-        self.__ally_kingdoms = set()
+        self.__ally_kingdoms = []
         Kingdom.__add_kingdom(self)
     
     @classmethod
@@ -87,7 +87,7 @@ class Kingdom:
             raise InvalidAllyKingdom("Cannot add itself as ally")
         else:
             if not self.is_ally(otherKingdom):
-                self.__ally_kingdoms.add(otherKingdom)
+                self.__ally_kingdoms.append(otherKingdom)
                 otherKingdom.add_ally(self)
 
     def is_ally(self, otherKingdom):

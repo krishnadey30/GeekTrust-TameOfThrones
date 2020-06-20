@@ -40,7 +40,7 @@ class Kingdom:
         &#34;&#34;&#34;
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
-        self.__ally_kingdoms = set()
+        self.__ally_kingdoms = []
         Kingdom.__add_kingdom(self)
     
     @classmethod
@@ -113,7 +113,7 @@ class Kingdom:
             raise InvalidAllyKingdom(&#34;Cannot add itself as ally&#34;)
         else:
             if not self.is_ally(otherKingdom):
-                self.__ally_kingdoms.add(otherKingdom)
+                self.__ally_kingdoms.append(otherKingdom)
                 otherKingdom.add_ally(self)
 
     def is_ally(self, otherKingdom):
@@ -230,7 +230,7 @@ class Kingdom:
         &#34;&#34;&#34;
         self.__kingdom_name = name
         self.__kingdom_emblem = emblem
-        self.__ally_kingdoms = set()
+        self.__ally_kingdoms = []
         Kingdom.__add_kingdom(self)
     
     @classmethod
@@ -303,7 +303,7 @@ class Kingdom:
             raise InvalidAllyKingdom(&#34;Cannot add itself as ally&#34;)
         else:
             if not self.is_ally(otherKingdom):
-                self.__ally_kingdoms.add(otherKingdom)
+                self.__ally_kingdoms.append(otherKingdom)
                 otherKingdom.add_ally(self)
 
     def is_ally(self, otherKingdom):
@@ -521,7 +521,7 @@ def remove_all_kingdoms(cls):
         raise InvalidAllyKingdom(&#34;Cannot add itself as ally&#34;)
     else:
         if not self.is_ally(otherKingdom):
-            self.__ally_kingdoms.add(otherKingdom)
+            self.__ally_kingdoms.append(otherKingdom)
             otherKingdom.add_ally(self)</code></pre>
 </details>
 </dd>
@@ -676,7 +676,7 @@ def remove_all_kingdoms(cls):
 Adds the both sender and reciever Kingdoms as Allies </p>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>message</code></strong> :&ensp;<code><a title="Message" href="Message.html">Message</a> Object</code></dt>
+<dt><strong><code>message</code></strong> :&ensp;<code>Message Object</code></dt>
 <dd>Message Object</dd>
 </dl>
 <h2 id="returns">Returns</h2>
