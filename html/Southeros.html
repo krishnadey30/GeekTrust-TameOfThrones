@@ -28,16 +28,17 @@
 class Southeros:
     &#34;&#34;&#34;Class to contain the World of Southeros&#34;&#34;&#34;
 
-    def __init__(self, kingdoms):
+    def __init__(self, kingdoms=[]):
         &#34;&#34;&#34;
         Args:
-            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
+            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems, 
+                defaults to empty List
         &#34;&#34;&#34;
         self.__rulingKingdom = None
         self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
-    def __register_kingdom(self, name, emblem):
+    def register_kingdom(self, name, emblem):
         &#34;&#34;&#34;Creates a Kingdom Class for the given kingdom name and emblem
         Args:
             name (string): Name of the Kingdom
@@ -56,7 +57,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         &#34;&#34;&#34;
         for name, emblem in kingdoms:
-            self.__register_kingdom(name, emblem)
+            self.register_kingdom(name, emblem)
     
     def get_kingdom(self, name):
         &#34;&#34;&#34;Get the Kingdom Object from the Name of the kingdom
@@ -107,14 +108,15 @@ class Southeros:
 <dl>
 <dt id="Southeros.Southeros"><code class="flex name class">
 <span>class <span class="ident">Southeros</span></span>
-<span>(</span><span>kingdoms)</span>
+<span>(</span><span>kingdoms=[])</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Class to contain the World of Southeros</p>
 <h2 id="args">Args</h2>
 <dl>
 <dt><strong><code>kingdoms</code></strong> :&ensp;<code>list</code> of <code>tuple</code> of <code>str,str</code></dt>
-<dd>List of Kingdoms and their emblems</dd>
+<dd>List of Kingdoms and their emblems,
+defaults to empty List</dd>
 </dl></div>
 <details class="source">
 <summary>
@@ -123,16 +125,17 @@ class Southeros:
 <pre><code class="python">class Southeros:
     &#34;&#34;&#34;Class to contain the World of Southeros&#34;&#34;&#34;
 
-    def __init__(self, kingdoms):
+    def __init__(self, kingdoms=[]):
         &#34;&#34;&#34;
         Args:
-            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
+            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems, 
+                defaults to empty List
         &#34;&#34;&#34;
         self.__rulingKingdom = None
         self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
-    def __register_kingdom(self, name, emblem):
+    def register_kingdom(self, name, emblem):
         &#34;&#34;&#34;Creates a Kingdom Class for the given kingdom name and emblem
         Args:
             name (string): Name of the Kingdom
@@ -151,7 +154,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         &#34;&#34;&#34;
         for name, emblem in kingdoms:
-            self.__register_kingdom(name, emblem)
+            self.register_kingdom(name, emblem)
     
     def get_kingdom(self, name):
         &#34;&#34;&#34;Get the Kingdom Object from the Name of the kingdom
@@ -253,6 +256,41 @@ class Southeros:
     return self.__kingdom_count</code></pre>
 </details>
 </dd>
+<dt id="Southeros.Southeros.register_kingdom"><code class="name flex">
+<span>def <span class="ident">register_kingdom</span></span>(<span>self, name, emblem)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Creates a Kingdom Class for the given kingdom name and emblem</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>name</code></strong> :&ensp;<code>string</code></dt>
+<dd>Name of the Kingdom</dd>
+<dt><strong><code>emblem</code></strong> :&ensp;<code>string</code></dt>
+<dd>Emblem of the Kingdom</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Kingdom Object</code></dt>
+<dd>Return the new kingdom object</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def register_kingdom(self, name, emblem):
+    &#34;&#34;&#34;Creates a Kingdom Class for the given kingdom name and emblem
+    Args:
+        name (string): Name of the Kingdom
+        emblem (string): Emblem of the Kingdom
+
+    Returns:
+        Kingdom Object: Return the new kingdom object 
+    &#34;&#34;&#34;
+    new_kingdom = Kingdom(name, emblem)
+    self.__kingdom_count += 1
+    return new_kingdom</code></pre>
+</details>
+</dd>
 <dt id="Southeros.Southeros.register_kingdoms"><code class="name flex">
 <span>def <span class="ident">register_kingdoms</span></span>(<span>self, kingdoms)</span>
 </code></dt>
@@ -273,7 +311,7 @@ class Southeros:
         kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
     &#34;&#34;&#34;
     for name, emblem in kingdoms:
-        self.__register_kingdom(name, emblem)</code></pre>
+        self.register_kingdom(name, emblem)</code></pre>
 </details>
 </dd>
 <dt id="Southeros.Southeros.ruler"><code class="name flex">
@@ -318,6 +356,7 @@ class Southeros:
 <ul class="">
 <li><code><a title="Southeros.Southeros.get_kingdom" href="#Southeros.Southeros.get_kingdom">get_kingdom</a></code></li>
 <li><code><a title="Southeros.Southeros.get_total_kingdoms" href="#Southeros.Southeros.get_total_kingdoms">get_total_kingdoms</a></code></li>
+<li><code><a title="Southeros.Southeros.register_kingdom" href="#Southeros.Southeros.register_kingdom">register_kingdom</a></code></li>
 <li><code><a title="Southeros.Southeros.register_kingdoms" href="#Southeros.Southeros.register_kingdoms">register_kingdoms</a></code></li>
 <li><code><a title="Southeros.Southeros.ruler" href="#Southeros.Southeros.ruler">ruler</a></code></li>
 </ul>

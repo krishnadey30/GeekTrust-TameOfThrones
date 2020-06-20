@@ -2,16 +2,17 @@ from kingdom import Kingdom
 class Southeros:
     """Class to contain the World of Southeros"""
 
-    def __init__(self, kingdoms):
+    def __init__(self, kingdoms=[]):
         """
         Args:
-            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
+            kingdoms (list of tuple of str,str): List of Kingdoms and their emblems, 
+                defaults to empty List
         """
         self.__rulingKingdom = None
         self.__kingdom_count = 0
         self.register_kingdoms(kingdoms)
 
-    def __register_kingdom(self, name, emblem):
+    def register_kingdom(self, name, emblem):
         """Creates a Kingdom Class for the given kingdom name and emblem
         Args:
             name (string): Name of the Kingdom
@@ -30,7 +31,7 @@ class Southeros:
             kingdoms (list of tuple of str,str): List of Kingdoms and their emblems
         """
         for name, emblem in kingdoms:
-            self.__register_kingdom(name, emblem)
+            self.register_kingdom(name, emblem)
     
     def get_kingdom(self, name):
         """Get the Kingdom Object from the Name of the kingdom
